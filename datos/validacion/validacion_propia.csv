@@ -1,0 +1,41 @@
+id,esquema,nivel,peso,pregunta,sql_referencia,orden_importa
+1,aerolinea,facil,1,Lista los valores distintos de Aerolínea en aviones.,SELECT DISTINCT aerolinea FROM aviones;,0
+2,aerolinea,facil,1,Muestra el id_vuelo de los registros de vuelos con Ciudad de destino igual a 'Miami'.,SELECT id_vuelo FROM vuelos WHERE destino = 'Miami';,0
+3,aerolinea,facil,1,Muestra el id_vuelo de los registros de vuelos con Ciudad de origen igual a 'Panamá'.,SELECT id_vuelo FROM vuelos WHERE origen = 'Panamá';,0
+4,aerolinea,facil,1,Muestra los 3 registros de aviones con mayor Número de asientos. Devuelve modelo y capacidad.,"SELECT modelo, capacidad FROM aviones ORDER BY capacidad DESC LIMIT 3;",0
+5,aerolinea,facil,1,¿Cuál es el promedio de Edad del pasajero en pasajeros?,SELECT AVG(edad) FROM pasajeros;,0
+6,aerolinea,facil,1,¿Cuál es el registro de pasajeros con mayor Edad del pasajero? Devuelve nombre y edad.,"SELECT nombre, edad FROM pasajeros ORDER BY edad DESC LIMIT 1;",0
+7,aerolinea,facil,1,¿Cuál es el valor mínimo de Edad del pasajero en pasajeros?,SELECT MIN(edad) FROM pasajeros;,0
+8,aerolinea,facil,1,¿Cuál es la suma total de Número de asientos en aviones?,SELECT SUM(capacidad) FROM aviones;,0
+9,aerolinea,facil,1,¿Cuántos registros de aviones tienen Aerolínea igual a 'United'?,SELECT COUNT(*) FROM aviones WHERE aerolinea = 'United';,0
+10,aerolinea,facil,1,¿Cuántos registros de vuelos tienen Ciudad de origen igual a 'Guatemala'?,SELECT COUNT(*) FROM vuelos WHERE origen = 'Guatemala';,0
+11,aerolinea,facil,1,¿Cuántos registros hay en la tabla aviones?,SELECT COUNT(*) FROM aviones;,0
+12,aerolinea,facil,1,¿Cuántos valores distintos de Ciudad de destino hay en vuelos?,SELECT COUNT(DISTINCT destino) FROM vuelos;,0
+13,banco,facil,1,Lista los valores distintos de Tipo en transacciones.,SELECT DISTINCT tipo FROM transacciones;,0
+14,banco,facil,1,Muestra el id_tx de los registros de transacciones con Tipo igual a 'Retiro'.,SELECT id_tx FROM transacciones WHERE tipo = 'Retiro';,0
+15,banco,facil,1,¿Cuál es el promedio de Monto de la transacción en transacciones?,SELECT AVG(monto) FROM transacciones;,0
+16,banco,facil,1,¿Cuál es el valor mínimo de Monto de la transacción en transacciones?,SELECT MIN(monto) FROM transacciones;,0
+17,aerolinea,media,2,Muestra id_vuelo de vuelos junto con modelo de aviones.,"SELECT h.id_vuelo, p.modelo FROM vuelos h JOIN aviones p ON h.id_avion = p.id_avion;",0
+18,aerolinea,media,2,¿Cuál es el promedio de Precio del boleto por Ciudad de destino en vuelos?,"SELECT destino, AVG(precio) FROM vuelos GROUP BY destino;",0
+19,aerolinea,media,2,¿Cuál es la suma de Número de asientos por Aerolínea en aviones?,"SELECT aerolinea, SUM(capacidad) FROM aviones GROUP BY aerolinea;",0
+20,aerolinea,media,2,¿Cuál es la suma de Precio del boleto por Ciudad de destino en vuelos?,"SELECT destino, SUM(precio) FROM vuelos GROUP BY destino;",0
+21,aerolinea,media,2,¿Cuántos registros de aviones hay por cada Aerolínea?,"SELECT aerolinea, COUNT(*) FROM aviones GROUP BY aerolinea;",0
+22,aerolinea,media,2,¿Cuántos registros de vuelos hay por cada Ciudad de origen?,"SELECT origen, COUNT(*) FROM vuelos GROUP BY origen;",0
+23,aerolinea,media,2,¿Qué Aerolínea de aviones tienen un promedio de Número de asientos mayor a 0? Devuelve aerolinea y el promedio.,"SELECT aerolinea, AVG(capacidad) FROM aviones GROUP BY aerolinea HAVING AVG(capacidad) > 0;",0
+24,aerolinea,media,2,¿Qué Ciudad de origen de vuelos tienen un promedio de Precio del boleto mayor a 0? Devuelve origen y el promedio.,"SELECT origen, AVG(precio) FROM vuelos GROUP BY origen HAVING AVG(precio) > 0;",0
+25,banco,media,2,¿Cuál es el promedio de Monto de la transacción por Tipo en transacciones?,"SELECT tipo, AVG(monto) FROM transacciones GROUP BY tipo;",0
+26,banco,media,2,¿Cuál es la suma de Monto de la transacción por Tipo en transacciones?,"SELECT tipo, SUM(monto) FROM transacciones GROUP BY tipo;",0
+27,banco,media,2,¿Cuál es la suma de Saldo actual por Tipo de cuenta en cuentas?,"SELECT tipo, SUM(saldo) FROM cuentas GROUP BY tipo;",0
+28,banco,media,2,¿Cuántos registros de cuentas hay por cada Tipo de cuenta?,"SELECT tipo, COUNT(*) FROM cuentas GROUP BY tipo;",0
+29,aerolinea,dificil,3,Muestra el modelo de aviones cuya suma de Precio del boleto en vuelos es la mayor. Devuelve modelo y el total.,"WITH agg AS (SELECT h.id_avion AS k, SUM(h.precio) AS total FROM vuelos h GROUP BY h.id_avion) SELECT p.modelo, a.total FROM agg a JOIN aviones p ON a.k = p.id_avion ORDER BY a.total DESC LIMIT 1;",0
+30,aerolinea,dificil,3,Muestra los registros de aviones cuyo Número de asientos es mayor al promedio de Número de asientos. Devuelve modelo y capacidad.,"SELECT modelo, capacidad FROM aviones WHERE capacidad > (SELECT AVG(capacidad) FROM aviones);",0
+31,aerolinea,dificil,3,Muestra los registros de pasajeros cuyo Edad del pasajero es mayor al promedio de Edad del pasajero. Devuelve nombre y edad.,"SELECT nombre, edad FROM pasajeros WHERE edad > (SELECT AVG(edad) FROM pasajeros);",0
+32,aerolinea,dificil,3,Muestra los registros de vuelos cuyo Precio del boleto es mayor al promedio de Precio del boleto. Devuelve id_vuelo y precio.,"SELECT id_vuelo, precio FROM vuelos WHERE precio > (SELECT AVG(precio) FROM vuelos);",0
+33,aerolinea,dificil,3,"Para cada Aerolínea en aviones, asigna un ranking de modelo según Número de asientos de mayor a menor. Devuelve modelo, aerolinea, capacidad y el ranking.","SELECT modelo, aerolinea, capacidad, RANK() OVER (PARTITION BY aerolinea ORDER BY capacidad DESC) AS ranking FROM aviones;",1
+34,aerolinea,dificil,3,"Usando una CTE, calcula la suma de Número de asientos por Aerolínea en aviones y devuelve la Aerolínea con la suma más alta. Devuelve aerolinea y el total.","WITH totales AS (SELECT aerolinea AS g, SUM(capacidad) AS total FROM aviones GROUP BY aerolinea) SELECT g, total FROM totales ORDER BY total DESC LIMIT 1;",0
+35,aerolinea,dificil,3,"Usando una CTE, calcula la suma de Precio del boleto por Ciudad de origen en vuelos y devuelve la Ciudad de origen con la suma más alta. Devuelve origen y el total.","WITH totales AS (SELECT origen AS g, SUM(precio) AS total FROM vuelos GROUP BY origen) SELECT g, total FROM totales ORDER BY total DESC LIMIT 1;",0
+36,aerolinea,dificil,3,"¿Cuál es la suma de Precio del boleto por mes del año 2024 en vuelos, según Fecha del vuelo? Devuelve el mes y la suma, ordenado por mes.","SELECT MONTH(fecha) AS mes, SUM(precio) AS total FROM vuelos WHERE YEAR(fecha) = 2024 GROUP BY MONTH(fecha) ORDER BY mes;",1
+37,aerolinea,dificil,3,"¿Cuántos registros de vuelos hay por año según Fecha del vuelo? Devuelve el año y el conteo, ordenado por año.","SELECT YEAR(fecha) AS anio, COUNT(*) AS n FROM vuelos GROUP BY YEAR(fecha) ORDER BY anio;",1
+38,banco,dificil,3,Muestra el nombre de clientes_banco cuya suma de Saldo actual en cuentas es la mayor. Devuelve nombre y el total.,"WITH agg AS (SELECT h.id_cliente AS k, SUM(h.saldo) AS total FROM cuentas h GROUP BY h.id_cliente) SELECT p.nombre, a.total FROM agg a JOIN clientes_banco p ON a.k = p.id_cliente ORDER BY a.total DESC LIMIT 1;",0
+39,banco,dificil,3,Muestra los registros de cuentas cuyo Saldo actual es mayor al promedio de Saldo actual. Devuelve id_cuenta y saldo.,"SELECT id_cuenta, saldo FROM cuentas WHERE saldo > (SELECT AVG(saldo) FROM cuentas);",0
+40,banco,dificil,3,Muestra los registros de transacciones cuyo Monto de la transacción es mayor al promedio de Monto de la transacción. Devuelve id_tx y monto.,"SELECT id_tx, monto FROM transacciones WHERE monto > (SELECT AVG(monto) FROM transacciones);",0

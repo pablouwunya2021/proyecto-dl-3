@@ -1,0 +1,20 @@
+{
+  "total": 2099,
+  "por_nivel": {
+    "facil": 1024,
+    "media": 539,
+    "dificil": 536
+  },
+  "por_esquema": {
+    "tienda": 293,
+    "hr": 132,
+    "biblioteca": 273,
+    "escuela": 169,
+    "clinic": 265,
+    "restaurante": 273,
+    "gimnasio": 213,
+    "fleet": 193,
+    "hotel": 156,
+    "red_social": 132
+  }
+}
