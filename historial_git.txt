@@ -1,0 +1,126 @@
+commit 30238921dddd5182ffed7a38f1d2ca72ee850d13
+Author: pablo <pabyiart28@gmail.com>
+Date:   2026-10-25 09:02:52 -0600
+
+    Notebooks de datos, entrenamiento y evaluación
+    
+    01_datos: genera, valida en MySQL y exporta el dataset con descartes.
+    02_entrenamiento: entrena configs A y B y grafica las curvas de loss.
+    03_evaluacion: baseline, adapters, experimento de auto-corrección y
+    análisis de errores por categoría.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+ notebooks/01_datos.ipynb         | 145 ++++++++++++++++++++++++++++++
+ notebooks/02_entrenamiento.ipynb | 126 ++++++++++++++++++++++++++
+ notebooks/03_evaluacion.ipynb    | 189 +++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 460 insertions(+)
+
+commit 66d2052db5d108fcc66ac33d4bd66827df867003
+Author: pablo <pabyiart28@gmail.com>
+Date:   2026-10-25 09:02:52 -0600
+
+    Entrenamiento LoRA, validación en MySQL y harness de EX
+    
+    entrenar.py: fine-tuning LoRA/QLoRA con dos configs (r=8 y r=32) y loss solo
+    sobre la respuesta. validar_mysql.py ejecuta cada par en MySQL 8.4.10 y
+    registra descartes. evaluar.py calcula la EX ponderada con las reglas del
+    evaluador (orden opcional, redondeo a 2 decimales, columna extra no penaliza).
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+ src/entrenar.py      | 213 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/evaluar.py       | 213 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/validar_mysql.py | 117 ++++++++++++++++++++++++++++
+ 3 files changed, 543 insertions(+)
+
+commit 1d049fc2c0917ede37497d5fdfe33cb1f33ccec1
+Author: pablo <pabyiart28@gmail.com>
+Date:   2026-10-25 09:02:51 -0600
+
+    Contrato de inferencia: prompt compartido, utilidades SQL y solucion.py
+    
+    solucion.py carga el modelo base (+ adapter opcional) una sola vez, genera
+    de forma determinista y devuelve una única consulta de solo lectura.
+    Incluye auto-corrección con la función ejecutar (experimento de inferencia).
+    El prompt vive en src/prompt.py para que entrenamiento e inferencia coincidan.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+ solucion.py      | 196 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ src/prompt.py    |  68 +++++++++++++++++++
+ src/sql_utils.py |  66 +++++++++++++++++++
+ 3 files changed, 330 insertions(+)
+
+commit 386dfb055f8c203b9e1fc3fbe35e6f8e4652a380
+Author: pablo <pabyiart28@gmail.com>
+Date:   2026-10-25 09:02:42 -0600
+
+    Generador de pares pregunta-SQL y dataset exportado
+    
+    Plantillas por nivel (fácil/media/difícil) que recorren tablas y columnas y
+    producen SQL ejecutable, con paráfrasis para diversificar. Exporta 2099
+    pares a datos/entrenamiento/train.jsonl y 40 preguntas de validación propia.
+    Incluye el convertidor opcional de Spider.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+ datos/entrenamiento/resumen.json         |   20 +
+ datos/entrenamiento/train.jsonl          | 2099 ++++++++++++++++++++++++++++++
+ datos/validacion/validacion_propia.csv   |   41 +
+ datos/validacion/validacion_propia.jsonl |   40 +
+ src/convertir_spider.py                  |   66 +
+ src/exportar_datos.py                    |  109 ++
+ src/generar_datos.py                     |  367 ++++++
+ 7 files changed, 2742 insertions(+)
+
+commit 23a97bc4874d5b62161779eb9b5d47908feb1209
+Author: pablo <pabyiart28@gmail.com>
+Date:   2026-10-25 09:02:42 -0600
+
+    Esquemas propios (10 entrenamiento + 2 validación) y volcados SQL
+    
+    Define los esquemas de forma estructurada (tablas, columnas con COMMENT,
+    roles semánticos y datos de ejemplo) y genera el DDL estilo SHOW CREATE
+    TABLE más los INSERT. La partición es por esquema: aerolinea y banco solo
+    se usan en validación.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+ esquemas/entrenamiento/biblioteca.sql  |  45 +++
+ esquemas/entrenamiento/clinic.sql      |  46 +++
+ esquemas/entrenamiento/escuela.sql     |  45 +++
+ esquemas/entrenamiento/fleet.sql       |  31 ++
+ esquemas/entrenamiento/gimnasio.sql    |  33 ++
+ esquemas/entrenamiento/hotel.sql       |  31 ++
+ esquemas/entrenamiento/hr.sql          |  32 ++
+ esquemas/entrenamiento/red_social.sql  |  31 ++
+ esquemas/entrenamiento/restaurante.sql |  46 +++
+ esquemas/entrenamiento/tienda.sql      |  50 +++
+ esquemas/validacion/aerolinea.sql      |  49 +++
+ esquemas/validacion/banco.sql          |  46 +++
+ src/esquemas.py                        | 553 +++++++++++++++++++++++++++++++++
+ 13 files changed, 1038 insertions(+)
+
+commit cea11af68cdf413ba0b911c0cde78a7a766438a8
+Author: pablo <pabyiart28@gmail.com>
+Date:   2026-10-25 09:02:33 -0600
+
+    Estructura inicial, documentación y configuración de la entrega
+    
+    Añade README (ejecución, licencias, uso de IA), config.json con el modelo
+    base y la semilla, requirements.txt fijado para Colab T4, plantillas de
+    BITACORA y CONTRIBUCIONES, .gitignore y carpetas de adapter/resultados.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+ .gitignore                 |  20 ++++++++
+ BITACORA.md                |  35 ++++++++++++++
+ CONTRIBUCIONES.md          |  32 ++++++++++++
+ Proyecto_3_Texto_a_SQL.pdf | Bin 0 -> 44195 bytes
+ README.md                  | 118 +++++++++++++++++++++++++++++++++++++++++++++
+ adapter/README.md          |  17 +++++++
+ config.json                |   7 +++
+ requirements.txt           |  11 +++++
+ resultados/.gitkeep        |   5 ++
+ 9 files changed, 245 insertions(+)
