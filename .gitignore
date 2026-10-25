@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Artefactos de entrenamiento intermedios (NO el adapter final de entrega)
+runs/
+adapter_A/checkpoint-*/
+adapter_B/checkpoint-*/
+wandb/
+
+# Cachés de modelos / datasets descargados
+*.bin.tmp
+.cache/
+hf_cache/
+
+# Sistema
+.DS_Store

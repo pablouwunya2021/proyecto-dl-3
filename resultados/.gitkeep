@@ -1,0 +1,5 @@
+# Resultados de la evaluación (se llenan al correr notebooks/03_evaluacion.ipynb):
+# - validacion_propia.csv        EX por configuración (baseline, A, B, auto-corrección)
+# - detalle_baseline.csv         predicción vs referencia por pregunta (baseline)
+# - detalle_mejor_autocorreccion.csv
+# - curvas_loss.png
