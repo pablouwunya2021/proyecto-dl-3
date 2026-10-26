@@ -92,7 +92,7 @@ class _Colador:
 
 def entrenar(config="A", salida="adapter_A", epocas=3, lr=2e-4,
              batch=8, grad_accum=2, usar_qlora=True, semilla=2026,
-             ruta_datos="datos/entrenamiento/train.jsonl"):
+             ruta_datos="datos/entrenamiento/train.jsonl", max_pasos=-1):
     """Entrena un adapter LoRA/QLoRA y lo guarda en `salida/`.
 
     Devuelve un dict con parámetros entrenables, tiempo e historial de loss
@@ -152,6 +152,7 @@ def entrenar(config="A", salida="adapter_A", epocas=3, lr=2e-4,
     args = TrainingArguments(
         output_dir=f"runs/{salida}",
         num_train_epochs=epocas,
+        max_steps=max_pasos,
         per_device_train_batch_size=batch,
         gradient_accumulation_steps=grad_accum,
         learning_rate=lr,
@@ -190,6 +191,7 @@ def entrenar(config="A", salida="adapter_A", epocas=3, lr=2e-4,
         "porcentaje_entrenable": round(100 * entrenables / totales, 4),
         "tiempo_segundos": round(dt, 1),
         "epocas": epocas,
+        "max_pasos": max_pasos,
         "n_pares": len(pares),
         "loss_history": hist,
     }
