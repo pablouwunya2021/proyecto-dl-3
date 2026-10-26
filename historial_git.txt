@@ -1,3 +1,25 @@
+commit bd235bd0b69ae0dee48bd46ba730fa9762306645
+Author: Luis Palacios <luisferpalacioslopez@gmail.com>
+Date:   2026-10-25 23:47:55 -0600
+
+    requirements compatible con Python 3.13 de Colab (verificado en T4)
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ requirements.txt | 11 +++--------
+ 1 file changed, 3 insertions(+), 8 deletions(-)
+
+commit 8a11aee3bb921b84248d63d3c0e21839c13868af
+Author: Luis Palacios <luisferpalacioslopez@gmail.com>
+Date:   2026-10-25 23:43:36 -0600
+
+    Actualiza historial_git.txt
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ historial_git.txt | 90 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 90 insertions(+)
+
 commit 0f4f941cab9a77a77e7692eaa86d44ffd32e6793
 Author: Luis Palacios <luisferpalacioslopez@gmail.com>
 Date:   2026-10-25 23:43:35 -0600
