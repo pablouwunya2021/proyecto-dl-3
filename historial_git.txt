@@ -1,3 +1,93 @@
+commit 0f4f941cab9a77a77e7692eaa86d44ffd32e6793
+Author: Luis Palacios <luisferpalacioslopez@gmail.com>
+Date:   2026-10-25 23:43:35 -0600
+
+    Adapter LoRA A (r=8) entrenado en Colab T4, reporte y presentación
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ BITACORA.md                        |      4 +-
+ adapter/README.md                  |    209 +-
+ adapter/adapter_config.json        |     37 +
+ adapter/adapter_model.safetensors  |    Bin 0 -> 36981072 bytes
+ adapter/added_tokens.json          |     24 +
+ adapter/merges.txt                 | 151388 +++++++
+ adapter/reporte_entrenamiento.json |     49 +
+ adapter/special_tokens_map.json    |     31 +
+ adapter/tokenizer.json             | 757444 ++++++++++++++++++++++++++++++++++
+ adapter/tokenizer_config.json      |    208 +
+ adapter/vocab.json                 |      1 +
+ presentacion.pdf                   |    Bin 9894 -> 37753 bytes
+ resultados/curvas_loss.png         |    Bin 0 -> 24095 bytes
+ resultados/reporte_adapter_A.json  |     49 +
+ src/presentacion.py                |      5 +-
+ 15 files changed, 909434 insertions(+), 15 deletions(-)
+
+commit fc692f69c6a64357d07662a93658ce568f368c69
+Author: Luis Palacios <luisferpalacioslopez@gmail.com>
+Date:   2026-10-25 23:34:35 -0600
+
+    Documenta el entrenamiento real: LoRA fp16, 100 pasos, batch 2x8
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ BITACORA.md                      | 4 ++--
+ notebooks/02_entrenamiento.ipynb | 9 ++++++---
+ src/presentacion.py              | 8 ++++----
+ 3 files changed, 12 insertions(+), 9 deletions(-)
+
+commit 537f47a62d1bc538a1c7916bfcda92d6e5d96833
+Author: Luis Palacios <luisferpalacioslopez@gmail.com>
+Date:   2026-10-25 23:22:23 -0600
+
+    Ignora adapters intermedios
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ .gitignore | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit de00db436ba488e1df1c38dbe93bd09fdaab79cd
+Author: Luis Palacios <luisferpalacioslopez@gmail.com>
+Date:   2026-10-25 23:22:01 -0600
+
+    Marca PDF y pesos como binarios
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ .gitattributes | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit b10f3d3b7268ed085a895d0c89c6344045240475
+Author: Luis Palacios <luisferpalacioslopez@gmail.com>
+Date:   2026-10-25 23:21:51 -0600
+
+    Tope de pasos en entrenamiento, presentación y documentación con autores
+    
+    Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+ BITACORA.md                      |  48 +++++------
+ CONTRIBUCIONES.md                |  33 +++-----
+ datos/descartes/descartes.csv    |   1 +
+ presentacion.pdf                 | Bin 0 -> 9894 bytes
+ resultados/validacion_propia.csv |   5 ++
+ src/entrenar.py                  |   4 +-
+ src/presentacion.py              | 171 +++++++++++++++++++++++++++++++++++++++
+ 7 files changed, 213 insertions(+), 49 deletions(-)
+
+commit ee79512f44904ec51aa23a72af10934a8e4aac32
+Author: pablo <pabyiart28@gmail.com>
+Date:   2026-10-25 09:03:06 -0600
+
+    Añade historial_git.txt
+    
+    Generado con git log --all --date=iso --stat, como exige el enunciado.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+ historial_git.txt | 126 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 126 insertions(+)
+
 commit 30238921dddd5182ffed7a38f1d2ca72ee850d13
 Author: pablo <pabyiart28@gmail.com>
 Date:   2026-10-25 09:02:52 -0600
