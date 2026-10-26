@@ -11,7 +11,7 @@
 | 7 | 2026-10-22 | Pablo | Harness de EX; baseline y evaluación de adapters. |
 | 8 | 2026-10-23 | Luis Palacios | Experimento de inferencia (auto-corrección) y análisis de errores. |
 | 9 | 2026-10-24 | Pablo y Luis Palacios | Predicción de EX, presentación y revisión final. |
-| 10 | 2026-10-25 | Luis Palacios | Entrenamiento en Colab T4 de configs A (r=8) y B (r=32), 100 pasos (~0.8 épocas); adapter de entrega, presentación y documentación final. |
+| 10 | 2026-10-25 | Luis Palacios | Entrenamiento en Colab T4 de la config A (r=8), 100 pasos (~0.8 épocas, 542 s, 9.2 M parámetros entrenables); B (r=32) falló por memoria de GPU y no hubo tiempo de repetirlo; adapter A de entrega, presentación y documentación final. |
 
 ## Notas por entrada
 
@@ -24,4 +24,4 @@
 - **2026-10-22 — Pablo:** Harness de EX ponderada con las reglas del evaluador (orden opcional, 2 decimales, columna extra no penaliza).
 - **2026-10-23 — Luis Palacios:** Auto-corrección con ejecutar: ante error de MySQL se regenera con el error como pista (máx. 3 llamadas).
 - **2026-10-24 — ambos:** Predicción de EX documentada en presentacion.pdf.
-- **2026-10-25 — Luis Palacios:** Entrenamiento de A y B en Colab T4 (LoRA fp16, 100 pasos con batch 2x8; bitsandbytes no cargó en el CUDA de Colab, así que se descartó QLoRA); se copió el mejor adapter a `adapter/` y se generó la presentación.
+- **2026-10-25 — Luis Palacios:** Entrenamiento de A en Colab T4 (LoRA fp16, 100 pasos con batch 2x8; bitsandbytes no cargó en el CUDA de Colab, así que se descartó QLoRA); B no se completó (memoria de GPU ocupada tras A); se copió A a `adapter/` y se generó la presentación.

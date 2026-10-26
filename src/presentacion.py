@@ -61,7 +61,8 @@ def _diapositiva(c, titulo, lineas, imagen=None):
 
 def _fmt_reporte(nombre, r):
     if not r:
-        return [f"{nombre}: pendiente de entrenar"]
+        return [f"{nombre}: no se completó (la GPU T4 seguía ocupada tras A; sin tiempo para reintentar)",
+                "  la hipótesis de B queda sin contrastar; se entrega A"]
     return [
         f"{nombre}: r={r['r']}, alpha={r['lora_alpha']}",
         f"  parámetros entrenables: {r['parametros_entrenables']:,} "
@@ -156,6 +157,8 @@ def main():
         "  - las difíciles (peso 3) siguen siendo el cuello de botella",
         "  - esquemas ocultos con nombres abreviados -> algo de caída vs validación",
         "  - entrenamiento corto (100 pasos, ~0.8 épocas) limita la mejora",
+        "  - la loss baja a ~0.01: los pares de plantilla se memorizan rápido,",
+        "    riesgo de sobreajuste al estilo de nuestros esquemas",
     ])
     _diapositiva(c, "Conclusiones y trabajo futuro", [
         "Pipeline completo: datos validados, LoRA A/B, harness EX, auto-corrección",

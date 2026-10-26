@@ -1,0 +1,49 @@
+{
+  "config": "A",
+  "r": 8,
+  "lora_alpha": 16,
+  "parametros_entrenables": 9232384,
+  "parametros_totales": 1552946688,
+  "porcentaje_entrenable": 0.5945,
+  "tiempo_segundos": 541.7,
+  "epocas": 1,
+  "max_pasos": 100,
+  "n_pares": 2099,
+  "loss_history": [
+    {
+      "loss": 0.2287,
+      "grad_norm": 0.418599396944046,
+      "learning_rate": 0.00018522168236559695,
+      "epoch": 0.1523809523809524,
+      "step": 20
+    },
+    {
+      "loss": 0.007,
+      "grad_norm": 0.008315583691000938,
+      "learning_rate": 0.00013639049369634876,
+      "epoch": 0.3047619047619048,
+      "step": 40
+    },
+    {
+      "loss": 0.0013,
+      "grad_norm": 0.012333263643085957,
+      "learning_rate": 7.281699277636572e-05,
+      "epoch": 0.45714285714285713,
+      "step": 60
+    },
+    {
+      "loss": 0.0005,
+      "grad_norm": 0.0056350394152104855,
+      "learning_rate": 2.025571894372794e-05,
+      "epoch": 0.6095238095238096,
+      "step": 80
+    },
+    {
+      "loss": 0.0002,
+      "grad_norm": 0.003259057644754648,
+      "learning_rate": 0.0,
+      "epoch": 0.7619047619047619,
+      "step": 100
+    }
+  ]
+}
