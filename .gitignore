@@ -18,3 +18,7 @@ hf_cache/
 
 # Sistema
 .DS_Store
+
+# Adapters intermedios (el de entrega va en adapter/; reportes en resultados/)
+adapter_A/
+adapter_B/
