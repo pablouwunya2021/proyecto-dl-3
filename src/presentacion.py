@@ -66,7 +66,7 @@ def _fmt_reporte(nombre, r):
         f"{nombre}: r={r['r']}, alpha={r['lora_alpha']}",
         f"  parámetros entrenables: {r['parametros_entrenables']:,} "
         f"({r['porcentaje_entrenable']}% del total)",
-        f"  tiempo de entrenamiento: {r['tiempo_segundos']/60:.1f} min (T4, QLoRA 4-bit)",
+        f"  tiempo de entrenamiento: {r['tiempo_segundos']/60:.1f} min (T4, LoRA fp16)",
         f"  pasos: {r.get('max_pasos', '-')}, pares: {r['n_pares']}, "
         f"loss final: {r['loss_history'][-1]['loss']:.3f}" if r.get("loss_history") else "",
     ]
@@ -92,7 +92,7 @@ def main():
         "Proyecto 3 · Deep Learning 2026 · Universidad del Valle",
         "Pablo · Luis Palacios",
         "",
-        "Qwen2.5-Coder-1.5B-Instruct + adapter LoRA (QLoRA 4-bit)",
+        "Qwen2.5-Coder-1.5B-Instruct + adapter LoRA (fp16)",
         "Esquema (CREATE TABLE con COMMENT) + pregunta en español -> MySQL 8.4",
     ])
     _diapositiva(c, "Problema y contrato", [
@@ -119,7 +119,7 @@ def main():
         "  orden solo si se pide, redondeo a 2 decimales, columna extra no penaliza",
     ])
     _diapositiva(c, "Configuraciones LoRA (un solo factor: rank r)", [
-        "Mismo lr (2e-4), dropout 0.05, alpha/r = 2, módulos q,k,v,o,gate,up,down",
+        "Mismo lr (2e-4), dropout 0.05, alpha/r = 2, 100 pasos, batch 2x8 acum., q,k,v,o,gate,up,down",
         "Loss solo sobre la respuesta SQL (prompt enmascarado)",
         "Hipótesis A (r=8): rank bajo basta para el patrón SQL y entrena más rápido",
         "Hipótesis B (r=32): más capacidad ayuda en consultas difíciles",
@@ -155,7 +155,7 @@ def main():
         "  - el adapter mejora formato, uso de COMMENT y JOIN/GROUP BY (peso 2)",
         "  - las difíciles (peso 3) siguen siendo el cuello de botella",
         "  - esquemas ocultos con nombres abreviados -> algo de caída vs validación",
-        "  - entrenamiento corto (1 época) limita la mejora",
+        "  - entrenamiento corto (100 pasos, ~0.8 épocas) limita la mejora",
     ])
     _diapositiva(c, "Conclusiones y trabajo futuro", [
         "Pipeline completo: datos validados, LoRA A/B, harness EX, auto-corrección",
