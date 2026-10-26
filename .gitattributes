@@ -1,0 +1,4 @@
+*.pdf binary
+*.safetensors binary
+*.png binary
+*.zip binary
